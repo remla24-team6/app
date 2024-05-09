@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing detection</title>
+    {% csrf_token %}
+    <script src="{% static 'index.js' %}"></script>
+</head>
+<body>
+     <form>
+
+        <label for="urlfield">Test Url:</label><br>
+        <input type="text" id="urlfield" name="url"><br>
+        <button type="button" id="checkButton">Check!</button><br>
+        <p id="result" style="display:none"></p>
+    </form>
+</body>
+</html>
