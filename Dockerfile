@@ -8,5 +8,3 @@ COPY . .
 
 # Without this line, django doesnt work. idk
 ENV PYTHONUNBUFFERED=1
-
-CMD . /opt/venv/bin/activate && python manage.py runserver
