@@ -1,8 +1,6 @@
 FROM python:3.12
 
-RUN python3 -m venv /opt/venv
-
-RUN . /opt/venv/bin/activate && pip install django numpy versioning-remla
+RUN pip install django numpy versioning-remla
 
 COPY . .
 
