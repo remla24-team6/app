@@ -2,7 +2,7 @@ window.onload = function() {
   document.getElementById("checkButton").addEventListener('click', checkUrl)
 };
 
-server_url = 'http://127.0.0.1:8000/'
+server_url = window.location.href
 csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value
 
 
