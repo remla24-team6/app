@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'index.html', {'version': VersionUtil().get_version()})
 
 def check(request):
-    test_url = json.loads(request.body)['test_url']
+    test_url = json.loads(request.body.decode('utf-8')).get('test_url')
     print(test_url)
     response = requests.post(os.environ['MODEL_SERVICE_URL'] + "/predict", json={'data': [test_url]})
     prediction = response.json().get('prediction')
