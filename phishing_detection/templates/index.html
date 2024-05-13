@@ -8,10 +8,10 @@
     <script src="{% static 'index.js' %}"></script>
 </head>
 <body>
-     <form>
+     <form onkeydown="return event.key !== 'Enter';">
 
         <label for="urlfield">Test Url:</label><br>
-        <input type="text" id="urlfield" name="url"><br>
+        <input type="text" id="urlfield" onsubmit="return false;"><br>
         <button type="button" id="checkButton">Check!</button><br>
         <p id="result" style="display:none"></p>
     </form>
