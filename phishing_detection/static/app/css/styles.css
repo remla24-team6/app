@@ -28,12 +28,11 @@ form {
 }
 
 label {
-    display: 20px;
-}
-
-label {
     display: block;
     margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
 }
 
 input[type="text"], select {
@@ -63,9 +62,36 @@ button:hover {
     background-color: #0056b3;
 }
 
+#correctButton {
+    background-color: #28a745;
+}
+
+#correctButton:hover {
+    background-color: #218838;
+}
+
+#incorrectButton {
+    background-color: #dc3545;
+}
+
+#incorrectButton:hover {
+    background-color: #c82333;
+}
+
 .result-text {
     text-align: center;
     font-size: 1.2em;
     margin-top: 20px;
+    color: #333;
+}
+
+#feedbackSection {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#feedbackSection p {
+    font-size: 1.2em;
+    font-weight: bold;
     color: #333;
 }

@@ -15,22 +15,16 @@
         <h1>Phishing Detection</h1>
       </header>
       <form onkeydown="return event.key !== 'Enter';">
-        <label for="urlfield">Test URL:</label><br />
+        <label for="urlfield">Enter URL to Check:</label><br />
         <input type="text" id="urlfield" onsubmit="return false;" /><br />
         <button type="button" id="checkButton">Check!</button><br />
         <p id="result" class="result-text" style="display: none"></p>
       </form>
-      <form id="trainingForm">
-        <label for="newUrl">New URL:</label><br />
-        <input type="text" id="newUrl" /><br />
-        <label for="label">Label:</label>
-        <select id="label">
-          <option value="0">0</option>
-          <option value="1">1</option></select
-        ><br />
-        <input type="checkbox" id="addToTraining" /> Add to training data<br />
-        <button type="button" id="addButton">Add</button>
-      </form>
+      <div id="feedbackSection" style="display: none">
+        <p>Is the model correct?</p>
+        <button type="button" id="correctButton">Correct</button>
+        <button type="button" id="incorrectButton">Incorrect</button>
+      </div>
     </div>
   </body>
 </html>

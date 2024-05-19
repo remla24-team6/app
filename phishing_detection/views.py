@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from versioning_remla.versioning import VersionUtil
 import requests
 import os
@@ -18,13 +18,33 @@ def check(request):
     is_phishing = prediction[0] == 1
     return JsonResponse({'is_phishing': is_phishing})
 
-
-def add_training(request):
-    data = json.loads(request.body.decode('utf-8'))
-    new_url = data.get('url')
-    label = data.get('label')
-    response = requests.post(settings.MODEL_SERVICE_URL + "/add", json={'url': new_url,
-                                                                'label': label})
-    result = response.json().get('msg')
-    # Add logic to save the new URL and label to your training data
-    return JsonResponse({'message': result})
+def feedback(request):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        url = data.get('url')
+        is_phishing = data.get('is_phishing')
+        feedback_result = data.get('feedback_result')
+        
+        print(f'url {url}, is pfhi{ is_phishing}, feedbbackres: {feedback_result}')
+        
+        if url is None or is_phishing is None or feedback_result is None:
+            return HttpResponseBadRequest("URL, is_phishing, and feedback_result are required.")
+        
+        
+        json_msg = {
+            'url': url,
+            'label': int(is_phishing),
+            'feedback': feedback_result
+        }
+        
+        response = requests.post(settings.MODEL_SERVICE_URL + "/add", json=json_msg)
+        result = response.json().get('msg')
+    
+        # Here you can add logic to handle the feedback, e.g., logging it or updating your model
+        # For now, we'll just return a success message
+        return JsonResponse({'message': 'Feedback received successfully', 'feedback_result': feedback_result})
+    except (json.JSONDecodeError, KeyError):
+        return HttpResponseBadRequest("Invalid JSON data.")
+    except requests.RequestException as e:
+        return HttpResponseBadRequest(f"Error processing feedback: {e}")
+    
