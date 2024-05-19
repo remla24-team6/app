@@ -1,19 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Phishing detection {{ version }}</title>
     {% csrf_token %}
-    <script src="{% static 'index.js' %}"></script>
-</head>
-<body>
-     <form onkeydown="return event.key !== 'Enter';">
-
-        <label for="urlfield">Test Url:</label><br>
-        <input type="text" id="urlfield" onsubmit="return false;"><br>
-        <button type="button" id="checkButton">Check!</button><br>
-        <p id="result" style="display:none"></p>
-    </form>
-</body>
+    <link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
+    <script src="{% static 'app/js/index.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="{% static 'logo.png' %}" alt="Logo" class="logo" />
+        <h1>Phishing Detection</h1>
+      </header>
+      <form onkeydown="return event.key !== 'Enter';">
+        <label for="urlfield">Test URL:</label><br />
+        <input type="text" id="urlfield" onsubmit="return false;" /><br />
+        <button type="button" id="checkButton">Check!</button><br />
+        <p id="result" class="result-text" style="display: none"></p>
+      </form>
+      <form id="trainingForm">
+        <label for="newUrl">New URL:</label><br />
+        <input type="text" id="newUrl" /><br />
+        <label for="label">Label:</label>
+        <select id="label">
+          <option value="0">0</option>
+          <option value="1">1</option></select
+        ><br />
+        <input type="checkbox" id="addToTraining" /> Add to training data<br />
+        <button type="button" id="addButton">Add</button>
+      </form>
+    </div>
+  </body>
 </html>
