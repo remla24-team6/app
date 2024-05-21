@@ -41,7 +41,7 @@ function submitFeedback(isCorrect) {
     const feedbackSection = document.getElementById("feedbackSection");
     const url = feedbackSection.dataset.url;
     const isPhishing = feedbackSection.dataset.isPhishing === 'true';
-    const feedbackResult = (isPhishing && isCorrect) || (!isPhishing && !isCorrect) ? 1 : 0;
+    const feedbackResult = Number(isCorrect);
 
     fetch(server_url + 'feedback/', {
         method: 'POST',
