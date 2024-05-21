@@ -22,10 +22,10 @@ def feedback(request):
     try:
         data = json.loads(request.body.decode('utf-8'))
         url = data.get('url')
-        is_phishing = data.get('is_phishing')
-        feedback_result = data.get('feedback_result')
+        is_phishing = data.get('label')
+        feedback_result = data.get('feedback')
         
-        print(f'url {url}, is pfhi{ is_phishing}, feedbbackres: {feedback_result}')
+        print(f'url {url} with label { is_phishing} has feedback {feedback_result}')
         
         if url is None or is_phishing is None or feedback_result is None:
             return HttpResponseBadRequest("URL, is_phishing, and feedback_result are required.")
