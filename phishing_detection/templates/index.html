@@ -1,19 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Phishing detection {{ version }}</title>
     {% csrf_token %}
-    <script src="{% static 'index.js' %}"></script>
-</head>
-<body>
-     <form onkeydown="return event.key !== 'Enter';">
-
-        <label for="urlfield">Test Url:</label><br>
-        <input type="text" id="urlfield" onsubmit="return false;"><br>
-        <button type="button" id="checkButton">Check!</button><br>
-        <p id="result" style="display:none"></p>
-    </form>
-</body>
+    <link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
+    <script src="{% static 'app/js/index.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="{% static 'logo.png' %}" alt="Logo" class="logo" />
+        <h1>Phishing Detection</h1>
+      </header>
+      <form onkeydown="return event.key !== 'Enter';">
+        <label for="urlfield">Enter URL to Check:</label><br />
+        <input type="text" id="urlfield" onsubmit="return false;" /><br />
+        <button type="button" id="checkButton">Check!</button><br />
+        <p id="result" class="result-text" style="display: none"></p>
+      </form>
+      <div id="feedbackSection" style="display: none">
+        <p>Is the prediction correct?</p>
+        <button type="button" id="correctButton">Correct</button>
+        <button type="button" id="incorrectButton">Incorrect</button>
+      </div>
+    </div>
+  </body>
 </html>
