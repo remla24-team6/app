@@ -25,6 +25,9 @@ Note: These are only instructions for building and running this repository local
 1. Pull the latest image using `docker pull ghcr.io/remla24-team6/app:latest`
 2. Run the image `docker run -t -i --network host -p 8000:8000 app`
 
+## Prometheus Metrics
+1. num_feedback_correct (Counter): This metric counts the number of correct model outputs based on user feedback.
+2. predict_requests (Counter): This metric counts the total number of requests received by the /predict endpoint.
 
 # Release
 On every push with a release tag, this repo should automatically be packaged and released.
