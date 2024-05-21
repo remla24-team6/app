@@ -5,6 +5,7 @@ from versioning_remla.versioning import VersionUtil
 import requests
 import os
 import json
+from .metrics import predict_requests, num_correct
 
 def index(request):
     return render(request, 'index.html', {'version': VersionUtil().get_version()})
@@ -16,6 +17,7 @@ def check(request):
     prediction = response.json().get('prediction')
     print(prediction)
     is_phishing = prediction[0] == 1
+    predict_requests.inc()
     return JsonResponse({'is_phishing': is_phishing})
 
 def feedback(request):
@@ -30,7 +32,9 @@ def feedback(request):
         if url is None or is_phishing is None or feedback_result is None:
             return HttpResponseBadRequest("URL, is_phishing, and feedback_result are required.")
         
-        
+        if int(feedback_result) == 1:
+            num_correct.inc()
+            
         json_msg = {
             'url': url,
             'label': int(is_phishing),
