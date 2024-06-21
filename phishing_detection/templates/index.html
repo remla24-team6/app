@@ -4,7 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Phishing detection {{ version }}</title>
-    {% csrf_token %}
+    {% csrf_token %} {% comment %}
+    <link rel="stylesheet" href="{% static 'app/css/styles.css' %}" />
+    {% endcomment %}
     <script src="{% static 'app/js/index.js' %}"></script>
   </head>
   <body>
