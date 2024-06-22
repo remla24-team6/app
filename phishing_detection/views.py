@@ -12,8 +12,9 @@ def index(request):
 
 def check(request):
     test_url = json.loads(request.body.decode('utf-8')).get('test_url')
-
-    response = requests.post(settings.MODEL_SERVICE_URL + "/predict", json={'data': [test_url]})
+    MODEL_SERVICE_URL = os.getenv('MODEL_SERVICE_URL', 'http://no-url-add-env')
+    # response = requests.post(settings.MODEL_SERVICE_URL + "/predict", json={'data': [test_url]})
+    response = requests.post(MODEL_SERVICE_URL + "/predict", json={'data': [test_url]})
     prediction = response.json().get('prediction')
     print(prediction)
     is_phishing = prediction[0] == 1
