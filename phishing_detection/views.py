@@ -42,7 +42,7 @@ def feedback(request):
             'feedback': feedback_result
         }
         
-        response = requests.post(settings.MODEL_SERVICE_URL + "/add", json=json_msg)
+        response = requests.post(os.getenv('MODEL_SERVICE_URL', 'http://no-url-add-env') + "/add", json=json_msg)
         result = response.json().get('msg')
     
         # Here you can add logic to handle the feedback, e.g., logging it or updating your model
