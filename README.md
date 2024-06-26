@@ -15,15 +15,14 @@ The `feedback` method takes feedback from the user about whether the model is co
 # Instructions
 Note: These are only instructions for building and running this repository locally. Instructions for running the entire system are in the operations repo.
 
-## Running Locally
-1. Run the model service locally and export the `MODEL_SERVICE_URL` environment variable to point to the model service.
-2. Create a virtual environment by running `virtualenv env`
-3. Install the requirements using `pip install -r requirements.txt`
-4. To run the app, run `python manage.py runserver`
+## Running without container
+Instructions for running the non-containerized app are listed below. However, it is recommended to run the application using docker-compose. More instructions are present in the operations repository.
 
-## Running using Docker
-1. Pull the latest image using `docker pull ghcr.io/remla24-team6/app:latest`
-2. Run the image `docker run -t -i --network host -p 8000:8000 app`
+1. Run the model service locally and export the `MODEL_SERVICE_URL` environment variable to point to the model service.
+2. Export both `SAVE_TRAINING_DATA_FOLDER` and `SAVE_TRAINING_DATA_FILENAME` so the app can store feedback and training data.
+3. Create a virtual environment by running `virtualenv env`
+4. Install the requirements using `pip install -r requirements.txt`
+5. To run the app, run `python manage.py runserver`
 
 ## Prometheus Metrics
 1. num_feedback_correct (Counter): This metric counts the number of correct model outputs based on user feedback.
