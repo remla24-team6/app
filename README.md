@@ -6,14 +6,13 @@ This is the app that the user would interact with. Part of the overarching proje
 We provide a simple use case in our application. On receiving the result from the model, the user will be asked whether the model is correct or not. Based on this feedback, we can monitor the model's performance and we can also create more training data that is verified by the user. We will build upon this use case through this course. 
 
 # Review information
-In `phishing_detection/views.py` the three endpoints of the server are defined. The `index` method returns `index.html` along with the current version of the library. This version should be shown in the title of the page.
+In `phishing_detection/views.py` the three endpoints of the server are defined. The `index` method returns `index.html` along with the current version of the `lib-version` library. This version should be shown in the title of the page.
 
 The `check` method, takes the user input, forwards it to the model_service (URL defined as env variable), and then returns this to the frontend.
 
 The `feedback` method takes feedback from the user about whether the model is correct or not. This is used to monitor the model's performance and also create more training data from the user's feedback. The data is stored in the model service.
 
 # Instructions
-Note: These are only instructions for building and running this repository locally. Instructions for running the entire system are in the operations repo.
 
 ## Running without container
 Instructions for running the non-containerized app are listed below. However, it is recommended to run the application using docker-compose. More instructions are present in the operations repository.
