@@ -23,9 +23,12 @@ Instructions for running the non-containerized app are listed below. However, it
 4. Install the requirements using `pip install -r requirements.txt`
 5. To run the app, run `python manage.py runserver`
 
-## Prometheus Metrics
-1. num_feedback_correct (Counter): This metric counts the number of correct model outputs based on user feedback.
-2. predict_requests (Counter): This metric counts the total number of requests received by the /predict endpoint.
+## Metrics
+We use the `django-prometheus` to support Prometheus metrics in our django app. We track the following metrics in our app -
+1. feedback_received (Counter): The total amount of feedback received from users. We track this metric for both versions of our app in our experiment and use it to determine the effect of the UI on the user's interaction with the app.
+2. model_performance (Gauge): The accuracy of the model determined from the feedback.
+3. url_length (Histogram): The length of the URL that is checked for phishing. This can be used to detect a distribution shift in the data.
+4. prediction_time (Summary): The time taken by the model to run inference for a URL.
 
 # Release
 On every push with a release tag, this repo should automatically be packaged and released.
